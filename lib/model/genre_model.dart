@@ -1,3 +1,6 @@
+///maitained this file for json manipulation 
+///I have used this model for serilaization process and converted json to object
+
 class Genre {
   final int id;
   final String name;

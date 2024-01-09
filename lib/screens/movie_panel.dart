@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/globals.dart';
-import 'package:movies_app/screens/trailer_screen.dart';
-import 'package:video_player/video_player.dart';
 
 import '../model/results_model.dart';
 
@@ -14,42 +12,8 @@ class MovieScreen extends StatefulWidget {
   State<MovieScreen> createState() => _MovieScreenState();
 }
 
+///This is bascially the movie panel 
 class _MovieScreenState extends State<MovieScreen> {
-  VideoPlayerController? _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    // Initialize the video player controller with the trailer URL
-    _controller = VideoPlayerController.network('URL_TO_YOUR_TRAILER_VIDEO');
-    _controller!.initialize().then((_) {
-      // Ensure the first frame is shown after the video is initialized
-      setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    // Dispose the video player controller when the screen is disposed
-    _controller!.dispose();
-    super.dispose();
-  }
-
-  void _playTrailer() async {
-    // Play the trailer
-    await _controller!.play();
-
-    await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => TrailerScreen()),
-    );
-
-    if (_controller!.value.isPlaying) {
-      _controller!.play();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,7 +105,7 @@ class _MovieScreenState extends State<MovieScreen> {
                                 side: BorderSide(
                                     color: BUTTON_COLOR, width: 2.0)),
                           ),
-                          onPressed: _playTrailer,
+                          onPressed: () {},
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

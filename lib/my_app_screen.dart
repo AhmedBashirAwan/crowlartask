@@ -8,6 +8,8 @@ class MyAppScreen extends StatefulWidget {
   State<MyAppScreen> createState() => _MyAppScreenState();
 }
 
+
+/// This screen is basically for bottomnavigationbar in the UI
 class _MyAppScreenState extends State<MyAppScreen> {
   // int _selectedTab = 0;
 

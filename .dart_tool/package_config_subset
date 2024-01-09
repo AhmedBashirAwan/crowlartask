@@ -54,6 +54,10 @@ flutter_bloc
 2.12
 file:///C:/Users/Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_bloc-8.1.3/
 file:///C:/Users/Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_bloc-8.1.3/lib/
+flutter_dotenv
+2.12
+file:///C:/Users/Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_dotenv-5.1.0/
+file:///C:/Users/Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_dotenv-5.1.0/lib/
 flutter_lints
 2.19
 file:///C:/Users/Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.3/
@@ -216,6 +220,6 @@ file:///C:/flutter/packages/flutter_web_plugins/
 file:///C:/flutter/packages/flutter_web_plugins/lib/
 movies_app
 3.0
-file:///D:/flutter/Complete%20Apps/movies_app/
-file:///D:/flutter/Complete%20Apps/movies_app/lib/
+file:///D:/Flutter/Complete%20Apps/movies_app/
+file:///D:/Flutter/Complete%20Apps/movies_app/lib/
 2

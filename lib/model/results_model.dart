@@ -1,3 +1,4 @@
+/// this is for movies api json manipulation
 class Movie {
   final bool adult;
   final String backdropPath;
@@ -41,7 +42,7 @@ class Movie {
       originalTitle: json['original_title'] ?? '',
       overview: json['overview'] ?? '',
       popularity:
-          (json['popularity'] ?? 0).toDouble(), // Convert to double if needed
+          (json['popularity'] ?? 0).toDouble(),
       posterPath: json['poster_path'] ?? '',
       releaseDate: json['release_date'] ?? '',
       title: json['title'] ?? '',

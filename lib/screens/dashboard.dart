@@ -13,6 +13,7 @@ class DashBoard extends StatefulWidget {
   State<DashBoard> createState() => DashBoardState();
 }
 
+// it is displaying all the movies fetched from the TMDB API
 class DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {

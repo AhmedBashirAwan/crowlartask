@@ -34,15 +34,16 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  #all the dependecies are here
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
-  bloc: ^8.1.2
   flutter_bloc: ^8.1.3
   equatable: ^2.0.5
   http: ^1.1.0
   dio: ^5.4.0
   video_player: ^2.7.2
-  
+  flutter_dotenv: ^5.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -81,6 +82,7 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  #used poppins as google font
   fonts:
     - family: Poppins
       fonts:

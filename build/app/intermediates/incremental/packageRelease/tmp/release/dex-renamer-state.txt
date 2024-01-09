@@ -1,0 +1,4 @@
+#Thu Dec 28 22:44:40 PKT 2023
+base.0=D\:\\Flutter\\Complete Apps\\movies_app\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

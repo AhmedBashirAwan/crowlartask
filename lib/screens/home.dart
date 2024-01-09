@@ -10,6 +10,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+///This Screen is for all the geners, I wasn't able to find any pictures for the geners in the TMDB APi
+///so I used the random colors
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
@@ -63,6 +65,7 @@ class _HomePageState extends State<HomePage> {
                             GENERS_COLORS[index % GENERS_COLORS.length];
                         return InkWell(
                           onTap: () {
+                            ///here is the navigation to next screen
                             Navigator.pushNamed(context, '/moviesList',
                                 arguments: genres[index].id);
                             print(genres[index].id);
