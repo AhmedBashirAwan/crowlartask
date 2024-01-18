@@ -1,0 +1,8 @@
+# Dart
+.dart_tool/
+.pub/
+
+# Flutter
+build/
+.idea/
+.vscode/

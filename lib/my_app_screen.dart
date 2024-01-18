@@ -8,22 +8,21 @@ class MyAppScreen extends StatefulWidget {
   State<MyAppScreen> createState() => _MyAppScreenState();
 }
 
-
 /// This screen is basically for bottomnavigationbar in the UI
 class _MyAppScreenState extends State<MyAppScreen> {
-  // int _selectedTab = 0;
+  int _selectedTab = 0;
 
-  // final List _pages = const [HomePage()];
-  // _changeTab(int index) {
-  //   setState(() {
-  //     _selectedTab = index;
-  //   });
-  // }
+  final List _pages = const [HomePage()];
+  _changeTab(int index) {
+    setState(() {
+      _selectedTab = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const HomePage(),
+      body: _pages[_selectedTab],
       bottomNavigationBar: Theme(
         data: ThemeData(canvasColor: Colors.black),
         child: BottomNavigationBar(

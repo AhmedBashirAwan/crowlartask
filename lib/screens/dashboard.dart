@@ -7,7 +7,9 @@ import '../api_services/api_services.dart';
 import '../model/results_model.dart';
 
 class DashBoard extends StatefulWidget {
-  const DashBoard({super.key});
+  int id;
+  String generName;
+  DashBoard({super.key, required this.id, required this.generName});
 
   @override
   State<DashBoard> createState() => DashBoardState();
@@ -15,10 +17,10 @@ class DashBoard extends StatefulWidget {
 
 // it is displaying all the movies fetched from the TMDB API
 class DashBoardState extends State<DashBoard> {
+  bool barVisiblity = true;
+  TextEditingController _searchingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    // Object? genre_ID = ModalRoute.of(context)!.settings.arguments;
-
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -32,12 +34,49 @@ class DashBoardState extends State<DashBoard> {
                         Navigator.pop(context);
                       },
                       child: const Icon(Icons.arrow_back)),
-                  Text(
-                    'Watch',
-                    style: normalTextStyle(),
+                  Visibility(
+                    visible: barVisiblity,
+                    child: Text(
+                      widget.generName,
+                      style: normalTextStyle(),
+                    ),
+                  ),
+                  Visibility(
+                    visible: barVisiblity == false ? true : false,
+                    child: Container(
+                      height: getHeight(context) * 0.055,
+                      width: getWidth(context) * 0.73,
+                      decoration: BoxDecoration(
+                          color: GREY_COlOR,
+                          borderRadius: BorderRadius.circular(30)),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: TextField(
+                            controller: _searchingController,
+                            style: normalTextStyle(),
+                            decoration: InputDecoration(
+                              helperStyle: extraSmallTextStyle(),
+                              hintText: "Search for the movie",
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   const Spacer(),
-                  const Icon(Icons.search)
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          if (barVisiblity == true) {
+                            barVisiblity = false;
+                          } else {
+                            barVisiblity = true;
+                          }
+                        });
+                      },
+                      child: const Icon(Icons.search))
                 ],
               ),
             ),
@@ -45,7 +84,7 @@ class DashBoardState extends State<DashBoard> {
                 child: Container(
               color: GREY_COlOR,
               child: FutureBuilder(
-                future: fetchData(),
+                future: fetchData(widget.id),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
@@ -53,12 +92,19 @@ class DashBoardState extends State<DashBoard> {
                     );
                   } else {
                     Movies movies = snapshot.data as Movies;
+                    bool filter = _searchingController.text.isEmpty;
                     return ListView.builder(
                       shrinkWrap: true,
                       physics: const ClampingScrollPhysics(),
                       itemCount: movies.results.length,
                       itemBuilder: (context, index) {
                         Movie movie = movies.results[index];
+                        bool containsQuery = movie.title
+                            .toLowerCase()
+                            .contains(_searchingController.text.toLowerCase());
+                        if (!filter && !containsQuery) {
+                          return Container(); 
+                        }
                         return Padding(
                           padding: const EdgeInsets.only(
                               left: 15, right: 15, top: 20),

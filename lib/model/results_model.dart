@@ -32,7 +32,9 @@ class Movie {
     required this.voteCount,
   });
 
-  factory Movie.fromJson(Map<String, dynamic> json) {
+  factory Movie.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Movie(
       adult: json['adult'] ?? false,
       backdropPath: json['backdrop_path'] ?? '',
@@ -41,8 +43,7 @@ class Movie {
       originalLanguage: json['original_language'] ?? '',
       originalTitle: json['original_title'] ?? '',
       overview: json['overview'] ?? '',
-      popularity:
-          (json['popularity'] ?? 0).toDouble(),
+      popularity: (json['popularity'] ?? 0).toDouble(),
       posterPath: json['poster_path'] ?? '',
       releaseDate: json['release_date'] ?? '',
       title: json['title'] ?? '',
@@ -57,10 +58,12 @@ class Movies {
   final List<Movie> results;
   Movies({required this.results});
 
-  factory Movies.fromJson(Map<String, dynamic> json) {
+  factory Movies.fromJson(Map<String, dynamic> json, int generId) {
+    print(generId);
     return Movies(
       results: (json['results'] as List<dynamic>)
           .map((item) => Movie.fromJson(item))
+          .where((element) => element.genreIds.contains(generId))
           .toList(),
     );
   }

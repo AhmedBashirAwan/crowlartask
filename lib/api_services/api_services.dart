@@ -1,19 +1,17 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movies_app/model/genre_model.dart';
 import '../model/results_model.dart';
 
 /// this file is for Api callings using Dio package
 Dio dio = Dio();
-Future<Movies> fetchData() async {
-  await dotenv.load();
-  String api = dotenv.env['API_KEY']!;
+String key = '  ';
+Future<Movies> fetchData(int id) async {
   //for fetching movies
-  final url = 'https://api.themoviedb.org/3/discover/movie?api_key=${api}';
+  final url = 'https://api.themoviedb.org/3/discover/movie?api_key=${key}';
   try {
     final Response response = await dio.get(url);
     if (response.statusCode == 200) {
-      final Movies movies = Movies.fromJson(response.data);
+      final Movies movies = Movies.fromJson(response.data, id);
       print('Fetched ${movies.results.length} movies successfully.');
       return movies;
     } else {
@@ -28,10 +26,8 @@ Future<Movies> fetchData() async {
 }
 
 Future<List<Genre>> fetchGenre() async {
-  await dotenv.load();
-  String api = dotenv.env['API_KEY']!;
   // for fetching all of the geners in TMDB database
-  final url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=${api}';
+  final url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=${key}';
   try {
     final Response response = await dio.get(url);
     if (response.statusCode == 200) {

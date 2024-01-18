@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/api_services/api_services.dart';
 import 'package:movies_app/globals.dart';
+import 'package:movies_app/screens/dashboard.dart';
 import '../model/genre_model.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,27 +23,15 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                      height: getHeight(context) * 0.07,
-                      width: getWidth(context) * 0.9,
-                      decoration: BoxDecoration(
-                          color: GREY_COlOR,
-                          borderRadius: BorderRadius.circular(30)),
-                      child: TextField(
-                        style: normalTextStyle(),
-                        decoration: InputDecoration(
-                            helperStyle: extraSmallTextStyle(),
-                            hintText: "Search for the movie",
-                            border: InputBorder.none,
-                            suffixIcon: const Icon(Icons.close),
-                            prefixIcon: const Icon(Icons.search)),
-                      ),
-                    ),
-                  )
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    'Choose Genre',
+                    style: headingTextStyle(Colors.black),
+                  ),
                 ],
               ),
             ),
@@ -66,9 +55,11 @@ class _HomePageState extends State<HomePage> {
                         return InkWell(
                           onTap: () {
                             ///here is the navigation to next screen
-                            Navigator.pushNamed(context, '/moviesList',
-                                arguments: genres[index].id);
-                            print(genres[index].id);
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => DashBoard(
+                                      id: genres[index].id,
+                                      generName: genres[index].name,
+                                    )));
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -80,7 +71,6 @@ class _HomePageState extends State<HomePage> {
                               height: getHeight(context) * 0.3,
                               child: Stack(
                                 children: [
-                                  
                                   const ClipRRect(
                                       //   borderRadius: BorderRadius.circular(15),
                                       //   child: Image.network(
